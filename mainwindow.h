@@ -2,6 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QKeyEvent>
+#include <QString>
+
+#include "lineedit.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -15,7 +19,38 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_pushButtonLogin_clicked();
+
+    /**
+     * @brief 当键盘某键被按下时调用
+     * @param event
+     */
+    void onKeyPressEvent(QKeyEvent* event);
+
+    /**
+     * @brief 当键盘某键弹起时调用
+     * @param event
+     */
+    void onKeyReleaseEvent(QKeyEvent* event);
+
 private:
     Ui::MainWindow *ui;
+    LineEdit* lineEditUsername;
+    LineEdit* lineEditPassword;
+
+    /**
+     * @brief 判断是否应该跳过事件
+     * @param event
+     * @return
+     */
+    bool shouldSkipEvent(QKeyEvent* event);
+
+    /**
+     * @brief 获取当前时间
+     * @return
+     */
+    QString getCurrentTime();
+
 };
 #endif // MAINWINDOW_H
