@@ -56,12 +56,6 @@ void MainWindow::on_pushButtonLogin_clicked()
 
 }
 
-bool MainWindow::shouldSkipEvent(QKeyEvent* event)
-{
-    // 跳过自动重复的事件
-    return event->isAutoRepeat();
-}
-
 QString MainWindow::getCurrentTime()
 {
     return QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
@@ -69,9 +63,6 @@ QString MainWindow::getCurrentTime()
 
 void MainWindow::onKeyPressEvent(QKeyEvent* event)
 {
-    if (shouldSkipEvent(event)) {
-        return;
-    }
     qDebug() << "按键" << event->key()
              << " 于内部时间" << event->timestamp()
              << " 实际时间" << getCurrentTime()
@@ -81,9 +72,6 @@ void MainWindow::onKeyPressEvent(QKeyEvent* event)
 
 void MainWindow::onKeyReleaseEvent(QKeyEvent* event)
 {
-    if (shouldSkipEvent(event)) {
-        return;
-    }
     quint64 lastPressed = lastPressedMap[event->key()];
     qDebug() << "按键" << event->key()
              << " 于内部时间" << event->timestamp()

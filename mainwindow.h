@@ -40,13 +40,6 @@ private:
     LineEdit* lineEditPassword;
 
     /**
-     * @brief 判断是否应该跳过事件
-     * @param event
-     * @return
-     */
-    bool shouldSkipEvent(QKeyEvent* event);
-
-    /**
      * @brief 获取当前时间
      * @return
      */
